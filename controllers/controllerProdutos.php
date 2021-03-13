@@ -1,20 +1,23 @@
-
 <?php
 
 function ListarProdutos() {
-    foreach ($item as $e) {
-        $id = $e['id'];
-        $preco = $e['preco'];
-        $produto = $e['produto'];
-        echo '
-        <div class="card text-center d-inline-block m-2" style="width: 16rem;">
-            <img class="card-img-top" src="" alt="<?php echo $produto?>">
-            <div class="card-body">
-            <h4 class="card-title"><?php echo $produto?></h4>
-            <p class="card-text"><?php echo $preco ?></p>
-            </div>
-        </div>
-    ';
+
+    $api = 'http://localhost/APIRest/api/v1';
+
+    $classe = 'estoque';
+    $metodo = 'mostrar';
+    
+    $montar = $api.'/'.$classe.'/'.$metodo;
+    
+    $retorno = file_get_contents($montar);
+    
+    $get = json_decode($retorno, true);
+    
+    $item = $get['dados'];
+    
+    if($_GET) {
+      $url = explode('/', $_GET['url']);
+      require_once 'pages/'.$url[0].'.php';
     }
 }
     

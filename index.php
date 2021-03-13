@@ -1,22 +1,5 @@
 <?php
-$api = 'http://localhost/APIRest/api/v1';
-
-$classe = 'estoque';
-$metodo = 'mostrar';
-
-$montar = $api.'/'.$classe.'/'.$metodo;
-
-$retorno = file_get_contents($montar);
-
-$get = json_decode($retorno, true);
-
-$item = $get['dados'];
-
-
-if($_GET) {
-  $url = explode('/', $_GET['url']);
-  require_once 'pages/'.$url[0].'.php';
-}
+require_once 'controllers/controllerProdutos.php';
 ?>
 <!doctype html>
 <html lang="pt-br">
@@ -31,11 +14,16 @@ if($_GET) {
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
+
 <body>
-<div class="container ">
-  <h1>Lista de produtos</h1>
-  <a class="fixed-top btn btn-primary" href="produtos">Produtos</a>
-</div>
+  <nav class="nav justify-content-center">
+    <a class="nav-link" href="./">Inicio</a>
+    <a class="nav-link active" href="produtos">Listar Produtos</a>
+  </nav>
+  <div class="container ">
+    <h3>Lista de produtos</h3>
+    <?php ListarProdutos(); ?>
+  </div>
   <!-- Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
