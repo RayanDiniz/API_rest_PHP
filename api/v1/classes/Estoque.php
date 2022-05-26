@@ -4,7 +4,7 @@ class Estoque
 {
     public function mostrar()
     {
-        $con = new PDO('mysql: host=localhost; dbname=filial;','root','');
+        $con = new PDO('mysql: host=localhost; dbname=api;','root','');
 
         $sql = "SELECT * FROM estoque ORDER BY id ASC";
         $sql = $con->prepare($sql);

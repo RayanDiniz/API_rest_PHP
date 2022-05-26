@@ -1,5 +1,8 @@
 <?php
-header('Content-Type: application/json; charset=utf-8');
+header(
+    'Content-Type: application/json; charset=utf-8',
+    'api-key: 123456'
+);
 
 require_once "classes/Estoque.php";
 
